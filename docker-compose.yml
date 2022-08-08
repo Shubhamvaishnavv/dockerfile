@@ -1,0 +1,16 @@
+version: '3'
+services:
+  dev:
+    image: 'tomcat:9'
+    ports:
+    - "80:8080"
+    volumes:
+    - "/root/mywar/:/usr/local/tomcat/webapps"
+  qa:
+    image: 'tomcat:9'
+    ports:
+    - "90:8080"
+    volumes:
+    - "/root/mywar/:/usr/local/tomcat/webapps"
+
+
