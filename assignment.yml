@@ -1,0 +1,33 @@
+--- #3deploy playbook
+- hosts: dev
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: yes
+
+  tasks:
+    - name: install httpd 
+      command: sudo yum install httpd -y
+
+    - name: service start
+      action: service name=httpd state=restarted
+
+    - name: deploy index file
+      action: copy src=/home/ansible/project/dev/index.html dest=/var/www/html/
+
+- hosts: qa
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: yes
+
+  tasks:
+    - name: install httpd for qa
+      action: yum pkg=httpd state=present
+
+    - name: deploy index file to qa server
+      action: copy src=/home/ansible/project/qa/index.html dest=/var/www/html
+
+    - name: serviec-start
+      action: service name=httpd state=restarted
+

@@ -1,0 +1,10 @@
+--- #httpd install playbook
+- hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: yes
+
+  tasks:
+    - name: httpd
+      action: yum pkg=httpd state=present

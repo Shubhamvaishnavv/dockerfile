@@ -1,0 +1,16 @@
+--- #remove plabook
+- hosts: all
+  user: ansible
+  connection: ssh
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: remove-httpd
+      action: yum pkg=httpd state=present
+
+    - name: remove-tree
+      action: yum pkg=tree state=present
+  
+    - name: remove-git
+      action: yum pkg=git state=present

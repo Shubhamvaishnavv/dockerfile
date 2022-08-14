@@ -1,0 +1,16 @@
+---  #httpd=plabook-all-tasks
+- hosts: all
+  user: ansible
+  become: yes
+  gather_facts: yes
+  connection: ssh
+
+  tasks:
+    - name: install httpd
+      action: yum pkg=httpd state=present
+
+    - name: copy-index.html
+      action: copy src=index.html dest=/var/www/html/
+
+    - name: start-httpd
+      action: service name=httpd state=restarted
